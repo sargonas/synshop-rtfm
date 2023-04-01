@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Caddy and TLS certs - RTFM</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../css/rtfm.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">RTFM</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">SYN Shop Docs</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admins <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Access%20Control%20System/" class="dropdown-item">Access Control System</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Caddy and TLS certs</a>
+</li>
+                                    
+<li>
+    <a href="../Drupal-Admin/" class="dropdown-item">Drupal Admin Info</a>
+</li>
+                                    
+<li>
+    <a href="../Traffic-Light/" class="dropdown-item">Traffic Light Admin Guide</a>
+</li>
+                                    
+<li>
+    <a href="../c220/" class="dropdown-item">c220 and LXD</a>
+</li>
+                                    
+<li>
+    <a href="../create-member-box/" class="dropdown-item">Create a member container</a>
+</li>
+                                    
+<li>
+    <a href="../flatline/" class="dropdown-item">Flatline</a>
+</li>
+                                    
+<li>
+    <a href="../kiosk/" class="dropdown-item">Front Kiosk Display</a>
+</li>
+                                    
+<li>
+    <a href="../media/" class="dropdown-item">media</a>
+</li>
+                                    
+<li>
+    <a href="../pi-hole-stubby/" class="dropdown-item">Pi-Hole and Stubby</a>
+</li>
+                                    
+<li>
+    <a href="../rtfm/" class="dropdown-item">rtfm</a>
+</li>
+                                    
+<li>
+    <a href="../synbackup/" class="dropdown-item">synbackup</a>
+</li>
+                                    
+<li>
+    <a href="../truenas/" class="dropdown-item">TrueNAS</a>
+</li>
+                                    
+<li>
+    <a href="../unifi/" class="dropdown-item">Unifi VM</a>
+</li>
+                                    
+<li>
+    <a href="../vpn/" class="dropdown-item">VPN</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../users/FAQ/" class="dropdown-item">FAQ</a>
+</li>
+                                    
+<li>
+    <a href="../../users/Local%20Resources/" class="dropdown-item">Local Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../users/Logos/" class="dropdown-item">Logos</a>
+</li>
+                                    
+<li>
+    <a href="../../users/Mailing%20Lists/" class="dropdown-item">Mailing Lists</a>
+</li>
+                                    
+<li>
+    <a href="../../users/Online%20Resources/" class="dropdown-item">Online Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../users/SYN%20Shop%20Tool%20List/" class="dropdown-item">SYN Shop Tool & Equipment List</a>
+</li>
+                                    
+<li>
+    <a href="../../users/SYN%20Shop%20Vision/" class="dropdown-item">SYN Shop Vision</a>
+</li>
+                                    
+<li>
+    <a href="../../users/SYN%20Shop%20v1.0/" class="dropdown-item">SYN Shop v1.0</a>
+</li>
+                                    
+<li>
+    <a href="../../users/Waivers/" class="dropdown-item">Waivers</a>
+</li>
+                                    
+<li>
+    <a href="../../users/kiosk/" class="dropdown-item">Front Kiosk Display</a>
+</li>
+                                    
+<li>
+    <a href="../../users/media/" class="dropdown-item">Media</a>
+</li>
+                                    
+<li>
+    <a href="../../users/member-boxes-faq/" class="dropdown-item">Member Boxes FAQ</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Equipment</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../users/Equipment/Big%20Boi%20Laser%20Cutter/" class="dropdown-item">"Big Boi"  Laser Cutter</a>
+</li>
+            
+<li>
+    <a href="../../users/Equipment/Consew%20230%20Industrial%20Sewing%20Machine/" class="dropdown-item">Consew 230 Industrial Sewing Machine</a>
+</li>
+            
+<li>
+    <a href="../../users/Equipment/First%20Child%20Laser%20Cutter/" class="dropdown-item">"First Child"  Laser Cutter</a>
+</li>
+            
+<li>
+    <a href="../../users/Equipment/New%20Kid%20Laser%20Cutter/" class="dropdown-item">"New Kid"  Laser Cutter</a>
+</li>
+            
+<li>
+    <a href="../../users/Equipment/Retina%20Engrave/" class="dropdown-item">Retina Engrave</a>
+</li>
+            
+<li>
+    <a href="../../users/Equipment/Silhoutte%20Cameo/" class="dropdown-item">Silhoutte Cameo</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Projects</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../users/Projects/555%20Contest%20-%20Gravity%20Detecting%2C%20Color%20Swirling%20Pingpong%20Balls/" class="dropdown-item">555 Contest - Gravity Detecting, Color Swirling Pingpong Balls</a>
+</li>
+            
+<li>
+    <a href="../../users/Projects/Do-nato/" class="dropdown-item">Do-nato</a>
+</li>
+            
+<li>
+    <a href="../../users/Projects/Shapeoko%20PCB%20Milling/" class="dropdown-item">Shapeoko PCB Milling</a>
+</li>
+            
+<li>
+    <a href="../../users/Projects/Traffic-Light/" class="dropdown-item">Traffic Light</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">SYNShop3.0</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../users/SYNShop3.0/" class="dropdown-item">SYN Shop v3.0</a>
+</li>
+            
+<li>
+    <a href="../../users/SYNShop3.0/FAQ/" class="dropdown-item">We're officially moving!</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Access%20Control%20System/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Drupal-Admin/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#caddy-and-tls-certs" class="nav-link">Caddy and TLS certs</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#intro" class="nav-link">Intro</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#install" class="nav-link">Install</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#set-default-cert-in-caddy" class="nav-link">Set default cert in Caddy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#adding-service" class="nav-link">Adding service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="caddy-and-tls-certs">Caddy and TLS certs<a class="headerlink" href="#caddy-and-tls-certs" title="Permanent link"></a></h1>
+<h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link"></a></h2>
+<p><a href="https://caddyserver.com/docs/install">Caddy</a> provides a reverse proxy with TLS termination for all internal services at the shop.<br />
+You must be on the shop LAN or on the shop VPN to access it. Working with <a href="https://certbot.eff.org/instructions?ws=other&amp;os=ubuntufocal&amp;commit=%3E"><code>certbot</code></a>,
+we can get wildcard certs for all services.</p>
+<p>Caddy runs as a container on the <a href="/admins/c220/">c220</a> on container named <code>caddy</code> with IP <code>10.0.40.29</code></p>
+<p>Finally <a href="https://pi-hole.net/">Pi-Hole</a> provides DNS to match FQDN &lt;-&gt; TLS CN. Pi-Hole has IP <code>10.0.40.66</code> </p>
+<h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link"></a></h2>
+<h3 id="caddy">Caddy<a class="headerlink" href="#caddy" title="Permanent link"></a></h3>
+<p>Assuming Ubuntu 22, following <a href="https://caddyserver.com/docs/install#debian-ubuntu-raspbian">their install docs</a>:</p>
+<pre><code class="language-bash">sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
+
+systemctl enable caddy
+systemctl start caddy
+</code></pre>
+<h3 id="certbot">certbot<a class="headerlink" href="#certbot" title="Permanent link"></a></h3>
+<p>From their <a href="https://certbot.eff.org/instructions?ws=other&amp;os=ubuntufocal&amp;commit=%3E">install docs</a>:</p>
+<pre><code class="language-bash">sudo snap install core; sudo snap refresh core
+</code></pre>
+<p>Verify that <code>list-timers</code> will run the renew:</p>
+<pre><code class="language-bash">systemctl list-timers|grep certbot
+</code></pre>
+<p>Get <a href="https://github.com/joohoi/acme-dns-certbot-joohoi">the python script</a> and make it executable. This uses the acme-dns.io DNS service with some CNAME trickery:</p>
+<pre><code class="language-bash">mkdir -p /etc/letsencrypt/
+curl -o /etc/letsencrypt/acme-dns-auth.py https://raw.githubusercontent.com/joohoi/acme-dns-certbot-joohoi/master/acme-dns-auth.py
+chmod +x /etc/letsencrypt/acme-dns-auth.py
+apt install python3
+ln -s /usr/bin/python3 /usr/bin/python
+</code></pre>
+<h3 id="first-time-cert-generation-w-dns-update">First time cert generation w/ DNS update<a class="headerlink" href="#first-time-cert-generation-w-dns-update" title="Permanent link"></a></h3>
+<p>You only have to do this ONCE!</p>
+<pre><code class="language-bash">sudo certbot certonly --manual --manual-auth-hook /etc/letsencrypt/acme-dns-auth.py --preferred-challenges dns --debug-challenges -d \*.synshop.net -d synshop.net
+</code></pre>
+<p>You'll then be prompted to create a DNS entry, something like:</p>
+<pre><code>_acme-challenge.synshop.net.    CNAME   87e00274-4d33-43fa-acc9-10839cee980a.auth.acme-dns.io.
+</code></pre>
+<p>Create this by:
+1. SSH to <code>new-lagos.synshop.org</code>
+1. <code>sudo su -</code>
+1. <code>vim /etc/bind/master/synshop.net</code>
+1. edit serial number at top to be today's date
+1. add new line for above DNS entry
+1. restart DNS with <code>rndc reload</code></p>
+<p>Credentials are now stored in JSON in <code>/etc/letsencrypt/acmedns.json</code>. These are backed up in keepass just in case. 
+Though you could go through above steps again if they're lost.</p>
+<p>Back on the certbot box, hit return to continue the validation process. Certs should 
+be created in <code>/etc/letsencrypt/live/synshop.net/</code></p>
+<h2 id="set-default-cert-in-caddy">Set default cert in Caddy<a class="headerlink" href="#set-default-cert-in-caddy" title="Permanent link"></a></h2>
+<p>In <code>/etc/caddy/Caddyfile</code> declare the top most host as shown below.  All subsequent hosts will inherit this cert:</p>
+<pre><code class="language-bash"># this host just declared to define default cert all other hosts inherit
+default-cert.synshop.net {
+   tls /etc/letsencrypt/live/synshop.net/fullchain.pem /etc/letsencrypt/live/synshop.net/privkey.pem
+   reverse_proxy 127.0.0.1
+}
+</code></pre>
+<h2 id="adding-service">Adding service<a class="headerlink" href="#adding-service" title="Permanent link"></a></h2>
+<h3 id="configure-caddy">Configure Caddy<a class="headerlink" href="#configure-caddy" title="Permanent link"></a></h3>
+<p>Assuming you had a new service at <code>10.0.40.201</code> called <code>test.synshop.net</code>, you would:</p>
+<ol>
+<li>ssh into caddy box </li>
+<li><code>vim /etc/caddy/Caddyfile</code></li>
+<li>
+<p>add new host entry (and see "Variations on Caddyfile entries" below). Because we declared a default host above, we can just add 3 lines which include the <code>host</code> and <code>IP</code>.  It implicitly uses port <code>80</code> for IPv4 hosts:</p>
+<pre><code>test.synshop.net {
+   reverse_proxy 10.0.40.201
+}
+</code></pre>
+</li>
+<li>
+<p>restart caddy:  <code>systemctl restart caddy</code></p>
+</li>
+</ol>
+<h3 id="configure-pi-hole">Configure Pi-Hole<a class="headerlink" href="#configure-pi-hole" title="Permanent link"></a></h3>
+<p>Set up new DNS entry:</p>
+<ol>
+<li>log into <a href="https://10.0.40.66/admin/">pihole</a></li>
+<li>go to   <a href="https://10.0.40.66/admin/dns_records.php">custom DNS</a></li>
+<li>add new DNS entry for <code>10.0.40.29</code> to resolve to  <code>test.synshop.net</code>. Note that <code>.29</code> is the IP of caddy, not the IP of the service your proxying.</li>
+</ol>
+<h3 id="variations-on-caddyfile-entries">Variations on Caddyfile entries<a class="headerlink" href="#variations-on-caddyfile-entries" title="Permanent link"></a></h3>
+<p>Step 3 above in "Configure Caddy" can have other options to support self signed certs and IPv6 hosts (or both!). </p>
+<h4 id="self-signed-cert">Self signed cert<a class="headerlink" href="#self-signed-cert" title="Permanent link"></a></h4>
+<p>We go from 3 lines to 9. The main difference is that we're telling it which <code>IP</code> with <code>https://</code> and to ignore self signed certs with <code>tls_insecure_skip_verify</code>:</p>
+<pre><code class="language-yaml">test.synshop.net {
+   reverse_proxy {
+      to https://10.0.40.201
+      transport http {
+            tls
+            tls_insecure_skip_verify
+         }
+      }
+}
+</code></pre>
+<h4 id="ipv6-entry">IPv6 entry<a class="headerlink" href="#ipv6-entry" title="Permanent link"></a></h4>
+<p>Note the use of brackets around the IP <code>[]</code> and port at the end <code>:80</code>. </p>
+<pre><code class="language-yaml">test.synshop.net {
+        reverse_proxy [fd42:7c97:9426:8f29:216:3eff:fe0a:71c9]:80 
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../js/rtfm.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
